@@ -39,7 +39,7 @@ export default function Hero() {
           
           <div className="relative mt-8 w-full max-w-5xl overflow-hidden rounded-xl shadow-2xl">
             <Image
-              src="/images/screenshot-main.png"
+              src="/images/screenshot-main.gif"
               alt="Code Snapshots in action"
               width={1200}
               height={675}
