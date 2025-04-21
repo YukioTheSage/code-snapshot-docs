@@ -1,0 +1,214 @@
+---
+title: "User Guide"
+description: "A detailed user guide for the Code Snapshots extension in VS Code."
+---
+
+# Code Snapshots - User Guide
+
+Code Snapshots is a lightweight companion to Git that focuses on your personal development workflow. This extension allows you to take point-in-time snapshots of your code and easily navigate between them, providing a frictionless safety net alongside traditional version control systems.
+
+## Getting Started
+
+### Installation
+
+1. Install the "Code Snapshots" extension from the VS Code Marketplace.
+2. Reload VS Code when prompted.
+3. Open a workspace folder you want to take snapshots in. The extension primarily works at the workspace level.
+4. The extension activates automatically. You should see a history icon (`$(history)`) and snapshot status in the bottom-left status bar.
+
+![Status Bar Indicator Screenshot](images/status-bar-indicator.png)
+
+No complex setup or initialization (`git init`-like command) is required.
+
+### Basic Usage
+
+#### Taking Snapshots
+
+1. Make changes to your code.
+2. Press `Ctrl+Alt+S` (or `Cmd+Alt+S` on Mac), or run the "Snapshots: Take Snapshot" command from the Command Palette (`Ctrl+Shift+P`).
+3. You'll be prompted to select the type of snapshot:
+
+![Snapshot Type Quick Pick Screenshot](images/snapshot-type-quick-pick.png)
+
+- **Quick Snapshot**: Fastest option. Only asks for a brief description. Includes all non-ignored files.
+- **Detailed Snapshot**: Lets you add tags, notes, task references, and mark it as a favorite.
+- **Selective Snapshot**: Choose _specific files_, then add context.
+
+4. Follow prompts for:
+   - **Description** (all types)
+   - **Select Files** (Selective only)
+   - **Tags**, **Task Reference**, **Notes**, **Favorite** (Detailed/Selective)
+
+![Selective Snapshot File Selection Screenshot](images/selective-snapshot-file-selection.png)
+
+5. A progress notification confirms snapshot creation.
+6. Snapshot Explorer and status bar update.
+
+#### Viewing Snapshots
+
+Use the **Snapshot Explorer** in the Activity Bar (history icon `$(history)`).
+
+![Snapshot Explorer View Screenshot](images/snapshot-explorer-view.png)
+
+- **My Snapshots**: Manual snapshots.
+- **Auto Snapshots**: Automatic snapshots.
+- Grouped by time, expandable to show file changes.
+- Snapshot details include time, favorite status (`$(star-full)`), type, description, tags (`$(tag)`), Git info, and icons (`$(history)`, `$(debug-step-back)`).
+
+![Expanded Snapshot Screenshot](images/expanded-snapshot.png)
+
+- File icons:
+  - `$(diff-added)`: Added
+  - `$(diff-modified)`: Modified
+  - `$(diff-removed)`: Deleted
+
+Toggle showing changed/all files in settings or via command.
+
+#### Filtering Snapshots
+
+Use icons in view title bar:
+
+![Filter Icons Screenshot](images/filter-icons.png)
+
+- **By Date** (`$(calendar)`), **Tags** (`$(tag)`), **Favorites** (`$(star)`), **File Path** (`$(file)`)
+- **Clear All Filters** (`$(clear-all)`)
+
+Filter status shown in status bar (`$(filter)`), clickable to clear.
+
+#### Navigating Snapshots
+
+- `Ctrl+Alt+B`: Previous snapshot
+- `Ctrl+Alt+N`: Next snapshot
+- Right-click in Tree View -> **Restore**
+- Command: "Snapshots: View Snapshots" (`Ctrl+Alt+V`)
+
+**Restore Process**:
+
+1. **Preview**: Summary of file changes
+
+![Snapshot Preview Quick Pick Screenshot](images/snapshot-preview-quick-pick.png)
+
+2. **Confirm**: Proceed or cancel
+3. **Conflict Check**:
+
+![Conflict Resolution Dialog Screenshot](images/conflict-resolution-dialog.png)
+
+   - Overwrite unsaved changes
+   - Take snapshot & restore
+   - Cancel
+
+#### Comparing Files
+
+- Right-click -> **Compare File with Workspace**
+
+![Diff View Screenshot](images/diff-view.png)
+
+- Clicking snapshot opens changed files Quick Pick
+
+#### Restoring Single Files
+
+- Right-click -> **Restore This File**
+
+#### Editing Snapshot Context
+
+- Right-click -> Edit tags, notes, task reference, toggle favorite
+
+#### Deleting Snapshots
+
+- Right-click -> **Delete** (non-recoverable)
+
+#### Editor Change Indicators
+
+![Editor Gutter Indicators Screenshot](images/editor-gutter-indicators.png)
+
+- Green: Added lines
+- Blue: Modified lines
+
+#### Unsaved Changes Notification
+
+- Shown after inactivity (>15 min), with "Take Snapshot" option
+
+#### Status Bar Indicator
+
+- `$(history) <Time Ago> | <Current/Total> Snapshots`
+- Click = Quick Pick, hover = details
+
+#### Diagnostics
+
+- Run: "Snapshots: Run Diagnostics" (`Ctrl+Alt+D`)
+- Logs to Output panel
+
+## Automatic Snapshots
+
+### Time-Based
+
+- Set interval in settings (e.g., `30` minutes)
+- Appears in Auto Snapshots view
+
+### Rule-Based
+
+- Command: "Manage Auto-Snapshot Rules"
+- Set file pattern and interval
+
+### Before Git Operations
+
+- Auto-snapshot before `git pull`, `merge`, `rebase`
+
+## Git Integration
+
+Use Snapshots for local work, Git for collaboration.
+
+### Git Commit from Snapshot
+
+- Enable in settings
+- Right-click -> **Create Git Commit from Snapshot**
+- Preview, resolve conflicts, commit changes
+
+## Understanding Snapshots
+
+### How It Works
+
+- Stores differential changes in `.snapshots/`
+- Uses `index.json` and `snapshot.json`
+
+### Exclusions
+
+- Ignores `.snapshots/`, binaries, `.gitignore`, `.snapshotignore`, `node_modules/`, etc.
+
+## Settings Reference
+
+| Setting | Description | Default |
+|--------|-------------|---------|
+| `snapshotLocation` | Path for snapshots | `.snapshots` |
+| `maxSnapshots` | Max snapshots to keep | 50 |
+| `autoSnapshotInterval` | Time-based snapshot interval | 0 |
+| `autoSnapshot.rules` | Rules for rule-based snapshots | `[]` |
+| `loggingEnabled` | Enable logging | true |
+| `verboseLogging` | Detailed debug logs | false |
+| `showOnlyChangedFiles` | Show only changed files | true |
+| `git.addCommitInfo` | Store Git info | true |
+| `git.commitFromSnapshotEnabled` | Enable Git commit from snapshot | true |
+| `git.autoSnapshotBeforeOperation` | Auto snapshot before Git ops | false |
+
+## Troubleshooting
+
+- Check Output panel, run Diagnostics
+- Use ignore files to reduce load
+- Check filters and rules
+
+## Tips & Best Practices
+
+- Use descriptive metadata
+- Snapshot often
+- Combine with Git for robust workflows
+- Review [Git Companion Guide](GIT_COMPANION.md)
+
+## Getting Help
+
+- Run Diagnostics, check Output
+- Review this guide and Git guide
+- Visit GitHub repo for issues
+
+## Future Updates
+
+- Track [Roadmap](ROADMAP.md) for upcoming features

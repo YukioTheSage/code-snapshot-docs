@@ -1,0 +1,137 @@
+---
+title: "Git Companion Guide"
+description: "A supplementary guide for using Code Snapshots with Git."
+---
+
+# Code Snapshots and Git: Perfect Companions
+
+This guide explains how to effectively use Code Snapshots alongside Git for an optimal development workflow.
+
+## Two Tools, Different Purposes
+
+**Git** is designed for:
+
+- Formal version control with logical commits
+- Team collaboration
+- Code sharing and distribution
+- Long-term project history
+- Branching and merging features
+- Remote backups and synchronization
+
+**Code Snapshots** is designed for:
+
+- Personal development workflow
+- Rapid experimentation & quick reverts
+- Work-in-progress protection ("micro-commits")
+- Moment-in-time captures without polluting Git history
+- Quick navigation between recent development states
+- Minimal-overhead versioning for individual workstreams
+- Capturing state _before_ complex Git operations
+
+## When to Use Each Tool
+
+### Use Code Snapshots When:
+
+- **Experimenting with code** — Take quick snapshots as you try different approaches (`Ctrl+Alt+S`).
+- **Between Git commits** — Create frequent checkpoints as you work toward your next commit.
+- **Learning or exploring unfamiliar code** — Snapshot before making changes.
+- **Before risky operations** — Snapshot before Git operations like `merge`, `rebase`, or `pull`.
+- **During debugging sessions** — Capture states while tracking down bugs.
+- **Quick safety net** — One keystroke for peace of mind.
+- **Personal "save points"** — Checkpoints outside Git history.
+- **Refactoring** — Snapshot before and after major changes.
+
+### Use Git When:
+
+- **Completing a logical feature/fix** — Commit meaningful, testable changes.
+- **Sharing code with teammates** — Push your commits.
+- **Creating releases** — Tag milestones.
+- **Parallel development** — Use branches.
+- **Open source contributions** — Make pull requests.
+- **Documenting project history** — Craft clear commit messages.
+- **Remote backup** — Push to remote repos.
+
+## Ideal Combined Workflow
+
+1. **Start with Git** — Clone your repo and check out the branch.
+2. **Snapshot before changes** — `Ctrl+Alt+S` with a description like "Clean state from git pull".
+3. **Work and snapshot frequently** — Every 15–30 minutes or after major changes.
+4. **Commit to Git when ready** — After passing tests.
+5. **Snapshot before Git network ops** — `pull`, `merge`, `rebase`. Enable auto-snapshot for this.
+6. **Sync with Git** — Pull teammate changes, resolve conflicts.
+7. **Repeat** — Continue the cycle.
+
+## Real-World Scenarios
+
+### Scenario 1: Experimental Feature Development
+
+```bash
+git checkout -b feature/new-widget
+```
+
+- Snapshot: `Ctrl+Alt+S` → "Start feature/new-widget"
+- Try Approach A with snapshots.
+- Restore to original snapshot if needed.
+- Try Approach B with snapshots.
+- Final snapshot → "Approach B - complete with tests"
+- Stage & commit:
+
+```bash
+git add .
+git commit -m "feat: implement new widget using Approach B"
+git push origin feature/new-widget
+```
+
+### Scenario 2: Bug Fixing
+
+- Checkout bug branch → Snapshot: "Buggy state for issue #123"
+- Add debug logs, test fixes with snapshots
+- Restore and retry if a fix fails
+- Implement the correct fix only, then:
+
+```bash
+git add <fixed_file>
+git commit -m "fix: resolve null pointer exception in calculation\n\nCloses #123"
+```
+
+### Scenario 3: Code Review Changes
+
+- Snapshot: "Before addressing PR #45 feedback"
+- Take snapshots for each change
+- Restore and retry as needed
+- Commit changes:
+
+```bash
+git add .
+git commit --amend
+# or
+git commit -m "chore: address code review feedback for PR #45"
+git push --force-with-lease
+```
+
+### Scenario 4: Promoting a Snapshot to a Commit
+
+- Identify desired snapshot
+- Right-click → **Create Git Commit from Snapshot**
+- Edit pre-filled commit message
+- Confirm restore process
+- Changes are staged and committed automatically:
+
+```bash
+git add .
+git commit -m "feat: implement new widget using Approach B"
+```
+
+## Tips for Integration
+
+1. **Use meaningful snapshot descriptions** referencing Git context.
+2. **Snapshot before Git operations** like `pull`, `merge`, `rebase`, etc.
+3. **Enable auto-snapshot** before Git ops via `vscode-snapshots.git.autoSnapshotBeforeOperation`.
+4. **Set up rule-based auto-snapshots** for important files.
+5. **Clean up old snapshots** once committed to Git.
+6. **Use Git for collaboration**, Snapshots for personal safety.
+7. **Enrich snapshot context** with tags, task refs, and notes.
+
+## Conclusion
+
+Git and Code Snapshots are **complementary tools**. Git handles formal versioning and collaboration, while Snapshots offer lightweight safety and flexibility. Used together, they provide a complete development safety net and history navigation toolkit.

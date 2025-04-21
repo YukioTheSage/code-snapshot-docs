@@ -1,0 +1,163 @@
+---
+title: "Developer Guide"
+description: "Technical architecture and contribution guide for the Code Snapshots VS Code extension."
+---
+
+# Code Snapshots - Developer Guide
+
+This document provides technical details, architecture information, and contribution guidelines for the Code Snapshots VS Code extension. It's intended for developers who want to understand, modify, or extend the extension.
+
+## Architecture Overview
+
+Code Snapshots follows a modular architecture with clearly separated components:
+
+![Architecture Diagram](images/architecture-diagram.png)
+
+### Key Components
+
+Each core module is described, including `extension.ts`, `commands.ts`, `snapshotManager.ts`, and more. These components cover:
+
+- Activation logic
+- Command registration
+- Snapshot creation/restoration
+- File system storage
+- UI interactions (Tree View, Quick Pick, Status Bar)
+- Change detection and decoration
+
+## Data Storage
+
+Snapshots are stored in the `.snapshots/` directory and include:
+
+```text
+.snapshots/
+├── index.json
+├── snapshot-*/
+│   └── snapshot.json
+```
+
+![Storage Structure Diagram](images/storage-structure-diagram.png)
+
+Snapshot data includes metadata, tags, notes, Git info, and file diffs or full content.
+
+## Core Algorithms
+
+### Snapshot Creation
+
+Outlines the full process from file collection to diffing, saving, and in-memory indexing.
+
+### Snapshot Restoration
+
+Describes restoring files, handling conflicts, restoring editor state, and progress tracking.
+
+### File Content Resolution
+
+Explains cache usage, recursive diff application, and binary file handling.
+
+### File Exclusion Logic
+
+Summarizes `.gitignore` and `.snapshotignore` parsing, glob conversion, and VS Code file filtering.
+
+## Error Handling
+
+Describes snapshot recovery, user feedback, conflict dialogs, and async error management.
+
+## Performance Considerations
+
+Highlights include:
+
+- Async file I/O
+- Differential storage
+- In-memory caching
+- Efficient UI responsiveness
+- Debounced editor decoration
+
+## Extension Points & Future Enhancements
+
+Includes potential support for:
+
+- Cloud-based backends
+- Timeline view UI
+- Snapshot branching/merging
+- Deeper Git/task integrations
+
+## Contributing to Code Snapshots
+
+### Setup
+
+```bash
+git clone https://github.com/yourusername/vscode-snapshots.git
+cd vscode-snapshots
+npm install
+code .
+```
+
+Use `F5` to launch the extension dev host.
+
+### Project Structure
+
+```text
+vscode-snapshots/
+├── src/
+│   ├── ui/
+│   ├── utils/
+│   ├── *.ts
+├── images/
+├── docs/
+├── package.json
+└── README.md
+```
+
+### Guidelines
+
+- Follow TypeScript best practices
+- Use strong typing and interfaces
+- Separate UI, logic, and storage responsibilities
+- Prefer dependency injection
+
+### Testing
+
+- Use Jest or Mocha with mocks
+- Cover `SnapshotManager`, `SnapshotStorage`, and utility functions
+
+```bash
+npm test
+```
+
+### Pull Requests
+
+- Fork → Branch → Commit → PR → Review
+- Follow commit message conventions (Conventional Commits)
+
+Example:
+```text
+feat(storage): add content caching
+```
+
+### Documentation
+
+Keep `README.md`, user and dev guides, and JSDoc comments updated.
+
+## Key Implementation Details
+
+### Asynchronous Operations
+
+```ts
+const content = await fsPromises.readFile(absolutePath, "utf8");
+```
+
+### State Management
+
+- `SnapshotManager` maintains snapshots and state
+- `SnapshotTreeDataProvider` handles filters
+
+### Event System
+
+Uses `vscode.EventEmitter` for snapshot changes and UI refreshes.
+
+## Appendix: API Reference
+
+Describes public classes and interfaces including `SnapshotManager`, `SnapshotStorage`, and `SnapshotTreeDataProvider`. See full code for exact signatures.
+
+## Filtering Architecture
+
+Outlines how snapshot filters (date, tags, etc.) are maintained independently per view, updated via commands, and reflected in the status bar.

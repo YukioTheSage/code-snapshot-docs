@@ -1,0 +1,177 @@
+---
+title: "Roadmap"
+description: "Planned and potential upcoming features for Code Snapshots."
+---
+
+# Code Snapshots Roadmap - Simple Snapshot Management
+
+This document outlines the future plans for the Code Snapshots extension, emphasizing **dead simple snapshot creation and management** that complements Git.
+
+## Core Principles: Keeping it Simple
+
+- **Simplicity First**: Easy to use, minimal setup.
+- **Low Mental Overhead**: No complex workflows to learn.
+- **Git-Friendly**: Enhances Git, doesn't replace it.
+- **Immediate Value**: Features provide instant benefit to your coding.
+- **Fast Performance**: Quick operations that don't slow you down.
+
+## Current Status (v0.9.0 Features) - Feature Checklist
+
+#### Snapshot Basics:
+
+- [x] One-key snapshot creation (`Ctrl+Alt+S`)
+- [x] Snapshot navigation (forward/backward: `Ctrl+Alt+N` / `Ctrl+Alt+B`)
+- [x] Time-based grouping in Explorer views
+- [x] Status bar indicator
+
+#### Working with Snapshots:
+
+- [x] File comparison (Diff View)
+- [x] Single file restoration
+- [x] Selective snapshots
+
+#### Automation & Efficiency:
+
+- [x] Time-based auto-snapshots
+- [x] Rule-based auto-snapshots
+- [x] UI for rule management
+- [x] Editor Gutter Indicators
+- [x] Differential storage
+- [x] Content caching
+- [x] Async file I/O
+
+#### Context & Organization:
+
+- [x] Snapshot context: Tags, Notes, Task References, Favorites
+- [x] Edit snapshot context via Tree View
+- [x] Filtering by Date, Tags, Favorites, Path
+- [x] Filter status bar
+- [x] `.gitignore` / `.snapshotignore` support
+
+#### Git Integration:
+
+- [x] Store Git branch/commit info
+- [x] Create Git commit from snapshot
+- [x] Auto-snapshot before pull/merge/rebase
+
+#### Getting Started:
+
+- [x] Welcome Tour and Getting Started command
+
+## Roadmap Ahead
+
+### Short-Term: v1.0.0 - Production Ready & Polished
+
+**Target:** Next stable release
+
+#### Documentation:
+
+- [ ] Finalize guides (`USER_GUIDE`, `DEVELOPER_GUIDE`, `GIT_COMPANION`)
+- [ ] Add more examples/screenshots
+- [ ] Refine README
+
+#### Stability & Testing:
+
+- [ ] Address known bugs
+- [ ] Increase test coverage
+- [ ] Test on large/different workspaces
+
+#### Performance:
+
+- [ ] Profile creation/restoration
+- [ ] Optimize filtering and diffs
+
+#### UX:
+
+- [ ] Improve notifications/tooltips
+- [ ] Polish Tree View appearance
+
+#### Filter Persistence:
+
+- [ ] Save filters per workspace
+- [ ] Restore filters on reopen
+
+### Medium-Term: v1.x - Enhanced Functionality
+
+**Target:** 3–6 months post-v1.0
+
+#### Comparison:
+
+- [ ] Compare any two snapshots
+- [ ] Compare snapshot vs Git commit
+
+#### Snapshot Search:
+
+- [ ] Search by description, tags, etc.
+- [ ] Search by file content
+
+#### Auto-Snapshot Triggers:
+
+- [ ] Trigger on branch switch
+- [ ] Trigger by line-change thresholds
+
+#### Import/Export:
+
+- [ ] Export snapshot archive
+- [ ] Import snapshot
+
+#### Config Enhancements:
+
+- [ ] Granular ignore settings
+- [ ] Workspace-level overrides
+
+### Long-Term: v2.0+ - Advanced Features
+
+**Target:** 6+ months post-v1.0
+
+#### Timeline View:
+
+- [ ] Visual history view
+
+#### Cloud Sync:
+
+- [ ] Backup to Gist/S3/Dropbox
+- [ ] Sync across machines (personal use)
+
+#### Smart Suggestions:
+
+- [ ] Activity-based snapshot prompts
+
+#### Storage Enhancements:
+
+- [ ] Snapshot compression
+- [ ] Advanced retention policies
+
+## What We Won't Build
+
+To stay simple and Git-friendly:
+
+- Complex branching/merging
+- Team sync or real-time sharing
+- Snapshot history rewriting
+- Advanced Git command replication
+- External database backends
+
+## Open Source & Community Driven
+
+#### Community:
+
+- [ ] Contribution guidelines
+- [ ] Issue/PR templates
+- [ ] Public roadmap
+- [ ] GitHub Discussions
+- [ ] Community feedback loop
+
+#### Quality:
+
+- [ ] Rigorous testing
+- [ ] Comprehensive docs
+- [ ] Transparent dev process
+
+## Give Us Your Feedback!
+
+Let us know what you think:
+
+- **Bugs/Features** → GitHub Issues
+- **General ideas** → GitHub Discussions
+- **Support the project** → Leave a review on VS Code Marketplace
